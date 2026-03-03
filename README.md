@@ -35,3 +35,4 @@
 - Wear OS 알림/권한 PoC
 - 수면 데이터 가용성 검증(대상 워치 모델 기준)
 - Go 백엔드 API 및 이벤트 스키마 구현
+# death-project
