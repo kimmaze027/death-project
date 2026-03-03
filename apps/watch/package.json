@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "build": "echo 'watch build: wire Android Gradle module next'",
-    "test": "echo 'watch test: wire JUnit/Kotlin tests next'",
-    "lint": "echo 'watch lint: add ktlint/detekt next'"
+    "build": "gradle --no-daemon build",
+    "test": "gradle --no-daemon test",
+    "lint": "gradle --no-daemon check"
   }
 }
