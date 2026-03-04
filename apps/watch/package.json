@@ -1,0 +1,10 @@
+{
+  "name": "@death-project/watch",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "swift build",
+    "test": "swift test",
+    "lint": "swift package dump-package > /dev/null && swift build -c release"
+  }
+}

@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+node_modules/
+**/CLAUDE.md
+!/CLAUDE.md
+.DS_Store
+.turbo/
+apps/*/.turbo/
+.gradle/
+apps/watch/build/
+apps/watch/.gradle/
+apps/watch/.build/
+apps/watch/.swiftpm/
