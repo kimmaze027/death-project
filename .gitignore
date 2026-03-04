@@ -10,3 +10,5 @@ apps/*/.turbo/
 .gradle/
 apps/watch/build/
 apps/watch/.gradle/
+apps/watch/.build/
+apps/watch/.swiftpm/

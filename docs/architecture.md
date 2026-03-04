@@ -1,7 +1,7 @@
 # Architecture Draft
 
 ## 구성 요소
-- Wear App (Kotlin / Wear OS)
+- Watch App (Swift / watchOS)
 - Scheduler (워치 로컬 주기 엔진)
 - State Detector (수면/충전 감지)
 - Event Logger (로컬 큐)

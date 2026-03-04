@@ -7,17 +7,17 @@
 - 1시간 간격으로 대표에게 큰 소리 알림 전송
 - 대표가 알림을 끄면 `생존 확인`으로 판정
 - 대표 화면에서 `1시간`, `2시간`, `3시간` 일시정지 버튼 제공
-- 갤럭시 워치 기반 수면 상태면 알림 미전송
+- 애플워치 기반 수면 상태면 알림 미전송
 - 워치 충전 상태면 알림 미전송
 
 ## 기술 스택
-- FE: Wear OS (갤럭시 워치), Kotlin
+- FE: watchOS (Apple Watch), Swift/SwiftUI
 - BE: Go
 - 데이터 저장소: PostgreSQL (추후 확정)
 
 ## 개발 언어 및 버전
-- FE 언어: Kotlin `2.3.10`
-- 워치 OS 타깃: Wear OS `5.1` (Android `15`, API `35`)
+- FE 언어: Swift `6.1.2`
+- 워치 OS 타깃: watchOS `10+` (Xcode 프로젝트에서 최종 고정)
 - BE 언어: Go `1.26.0`
 - DB: PostgreSQL `18.3`
 
@@ -26,7 +26,7 @@
 - [아키텍처 초안](./docs/architecture.md)
 
 ## 현재 코드 구조
-- `apps/watch`: 워치 생존 체크 도메인 로직 (Kotlin)
+- `apps/watch`: 워치 생존 체크 도메인 로직 (Swift Package)
 - `apps/backend`: 이벤트 수집/조회 API 스켈레톤 (Go)
 - `packages`: 공유 패키지 확장용 디렉토리
 
@@ -48,7 +48,7 @@ go run ./cmd/server
 ### 1. 시스템 구조
 이 프로젝트는 `워치 로컬 판정 우선(Local-first)` 구조를 사용한다. 핵심 목적은 네트워크가 불안정해도 1시간 생존 확인 루프가 끊기지 않게 하는 것이다.
 
-1. Wear App (Kotlin, Wear OS)
+1. Watch App (Swift/SwiftUI, watchOS)
 2. Health/Sensor Adapter (수면, 심박, 충전 상태 수집)
 3. Alert Scheduler (1시간 주기 및 스누즈 계산)
 4. Alert UI (알림 표시, 해제 버튼, 1/2/3시간 버튼)
@@ -62,8 +62,8 @@ go run ./cmd/server
    - 다음 알림 시각(`next_alert_at`) 계산
    - `snooze_until` 반영
 2. `state-detector`
-   - 수면 상태: Health Services 기반 판정
-   - 충전 상태: 배터리/충전 API 판정
+   - 수면 상태: HealthKit Sleep Analysis 기반 판정
+   - 충전 상태: WatchKit 배터리 상태 기반 판정
 3. `alert-engine`
    - 고강도 알림(소리/진동) 노출
    - 사용자 해제 이벤트 발생
@@ -195,6 +195,6 @@ go run ./cmd/server
 - 사용자가 1/2/3시간 일시정지를 설정한 경우: `skip_snoozed`
 
 ## 다음 단계
-- Wear OS 알림/권한 PoC
-- 수면 데이터 가용성 검증(대상 워치 모델 기준)
+- watchOS 알림/권한 PoC
+- HealthKit 수면 데이터 가용성 검증(대상 워치 모델 기준)
 - Go 백엔드 API 및 이벤트 스키마 구현
